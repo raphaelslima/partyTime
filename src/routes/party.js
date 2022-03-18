@@ -79,7 +79,7 @@ router.post(
 
 // resgtada todos os eventos públicos
 router.get('/all', async (req, res) => {
-  // Resgata festas públicas
+  
 
   try {
     const publicParties = await Party.find({ privacy: false }).sort([

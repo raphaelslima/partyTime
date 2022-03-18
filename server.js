@@ -30,16 +30,21 @@ app.use('/api/auth', authRouther)
 app.use('/api/user', userRouther)
 app.use('/api/party', partyRouther)
 
-mongoose.connect(`mongodb://localhost/${dbName}`, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-
 // Rota teste
 app.get('/', (req, res) => {
   res.json({ msg: 'teste' })
 })
 
-app.listen(port, () => {
-  console.log('API rodando na porta http://localhost:3000/')
-})
+mongoose
+  .connect(
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.vwfbm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+  )
+  .then(() => {
+    console.log('API conectou ao DB')
+    app.listen(port, () => {
+      console.log('API rodando na porta http://localhost:3000/')
+    })
+  })
+  .catch(error => {
+    console.log(error)
+  })

@@ -16,8 +16,6 @@ router.post('/', async (req, res) => {
   const password = req.body.password
   const confirmPassword = req.body.confirmPassword
 
-  console.log(req.body)
-
   // Verifica se todos os campos estão preenchidos
   if (
     (name == null || email == null || password == null, confirmPassword == null)
